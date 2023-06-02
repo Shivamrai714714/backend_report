@@ -8,7 +8,18 @@ const userReports = require('../models/reports');
 
 
 
-router.get('/report/:emailId', async (req, res) => {
+
+
+
+
+
+
+
+
+
+
+
+router.get('/reports/:emailId', async (req, res) => {
   try{
 
     const emailId = req.params.emailId;
@@ -17,18 +28,18 @@ router.get('/report/:emailId', async (req, res) => {
     console.log("ayush");
   
     
-    const reports = await userReports.findOne({emailId : emailId}); 
+    const reports = await userReports.findOne({ emailId: emailId }).exec();
   
-    if (!reports) {
+    if (reports.length === 0) {
       return res.status(404).json({ error: 'User reports not found' });
     }
     
-    console.log(reports.json());
+    console.log(reports);
     
     res.status(200).json(reports);
 
   }catch (e) {
-    console.log("Not working");
+    console.log(e);
   }
   
 });
