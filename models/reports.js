@@ -1,57 +1,19 @@
 const mongoose = require("mongoose");
 
-
-
-
 const userReportSchema = {
-  
-  
-      name: { type: "string" },
-      grade: { type: "string" },
-      weeks: {
-        type: "array",
-        minItems: 1,
-        uniqueItems: true,
-        items: {
-          type: "object",
-          required: [
-            "weekId",
-            "startingDate",
-            "endingDate",
-            "mentorFeedback",
-            "timeManagement",
-            "overallAssessments",
-            "communicationSkills",
-            "attendanceParticipation",
-            "assignment"
-          ],
-          properties: {
-            weekId: { type: "string" },
-            startingDate: { type: "string" },
-            endingDate: { type: "string" },
-            mentorFeedback: {
-              type: "array",
-              minItems: 1,
-              uniqueItems: true,
-              items: { type: "string" }
-            },
-            timeManagement: { type: "string" },
-            overallAssessments: { type: "string" },
-            communicationSkills: { type: "string" },
-            attendanceParticipation: { type: "string" },
-            assignment: { type: "string" }
-          }
-        }
-      },
-      emailId: { type: "string" },
-      assessment: { type: "string" },
-      totalScore: { type: "string" },
-      mockProject: { type: "string" },
-      timeManagement: { type: "string" },
-      communicationSkills: { type: "string" },
-      attendanceParticipation: { type: "string" }
-    
-  };
+  Name_of_Mentee: { type: "string" },
+  Email_ID: { type: "string" },
+  Mentor_Name: { type: "string" },
+  Mentor_Email_ID: { type: "string" },
+  Overall_Assessment: { type: "string" }, //(100%)
+  Attendance_Participation: { type: "string" }, //(0-4)
+  Time_Management: { type: "string" }, //(0-4)
+  Comm_Skills: { type: "string" }, //(0-4)
+  Performance_in_Assignments: { type: "string" }, //(Out of 10)
+  Remarks: { type: "string" },
+  type: { type: "string" },
+  week_number: { type: "string" },
+};
 
-  const UserReport = new mongoose.model("reports",userReportSchema);
+const UserReport = new mongoose.model("reports", userReportSchema);
 module.exports = UserReport;
